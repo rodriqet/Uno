@@ -39,22 +39,24 @@ public class Jugador implements Jugable{
         return idJugador;
     }
 
-    //TODO
     @Override
     public void jugarCarta(Carta carta, Partida partida){
-
+        if (mano.remove(carta)) {
+            partida.getDescarte().getCartas().addFirst(carta);
+            if (carta instanceof CartaEspecial || carta instanceof CartaComodin){
+                ((Efecto) carta).aplicarEfecto(partida);
+            }
+        }
     }
 
-    //TODO
     @Override
     public void robarCarta(Baraja baraja){
-
+        mano.add(baraja.robarCarta());
     }
 
-    //TODO
     @Override
     public void mostrarEstado(){
-
+        System.out.println(mano.toString());
     }
 
 

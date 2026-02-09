@@ -1,5 +1,10 @@
 package org.uno;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 public abstract class Carta {
 
     public static final String VERDE = "\033[92m";
@@ -28,5 +33,27 @@ public abstract class Carta {
 
     public String getValor() {
         return valor;
+    }
+
+    @Override
+    public String toString() {
+        File file = new File("/cartas_ascii/" + valor + ".txt");
+        StringBuilder carta = new StringBuilder();
+        carta.append(color);
+        String linea = "";
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            while ((linea = br.readLine()) != null) {
+                carta.append(linea);
+            }
+            carta.append(Carta.RESET);
+            br.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return carta.toString();
     }
 }
