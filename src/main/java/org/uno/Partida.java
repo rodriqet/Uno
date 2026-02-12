@@ -59,10 +59,11 @@ public class Partida {
     }
 
     private void reponerDescarte() {
-        if (mazo.getCartas().isEmpty()) {
-            mazo.setCartas(descarte.getCartas());
-            mazo.barajar();
-        }
+        mazo.getCartas().addAll(
+                descarte.getCartas().subList(1, descarte.getCartas().size())
+        );
+        mazo.barajar();
+        descarte.getCartas().subList(1, descarte.getCartas().size()).clear();
     }
 
     private void cambiarTurno() {
@@ -116,11 +117,7 @@ public class Partida {
 
         if (opcion.equals("robar")) {
             if (mazo.getCartas().isEmpty()) {
-                mazo.getCartas().addAll(
-                        descarte.getCartas().subList(1, descarte.getCartas().size())
-                );
-                mazo.barajar();
-                descarte.getCartas().subList(1, descarte.getCartas().size()).clear();
+                reponerDescarte();
             }
             jugadorTurno.robarCarta(mazo);
             cambiarTurno();
