@@ -5,6 +5,7 @@ import java.util.Collections;
 
 public class Baraja {
 
+
     private ArrayList<Carta> cartas;
 
     public Baraja() {
@@ -39,35 +40,29 @@ public class Baraja {
 
         //CARTAS ESPECIALES
         for (int i = 0; i < 4; i++) {
-            //CHUPATE2
-            cartas.add(new CartaNumero(Carta.VERDE, "chupate2"));
-            cartas.add(new CartaNumero(Carta.VERDE, "chupate2"));
-            cartas.add(new CartaNumero(Carta.ROJO, "chupate2"));
-            cartas.add(new CartaNumero(Carta.ROJO, "chupate2"));
-            cartas.add(new CartaNumero(Carta.AZUL, "chupate2"));
-            cartas.add(new CartaNumero(Carta.AZUL, "chupate2"));
-            cartas.add(new CartaNumero(Carta.AMARILLO, "chupate2"));
-            cartas.add(new CartaNumero(Carta.AMARILLO, "chupate2"));
+            if (i < 2) {
+                //CHUPATE2
+                cartas.add(new CartaEspecial(Carta.VERDE, "chupate2"));
+                cartas.add(new CartaEspecial(Carta.ROJO, "chupate2"));
+                cartas.add(new CartaEspecial(Carta.AZUL, "chupate2"));
+                cartas.add(new CartaEspecial(Carta.AMARILLO, "chupate2"));
 
-            //CAMBIO_SENTIDO
-            cartas.add(new CartaNumero(Carta.VERDE, "cambio_sentido"));
-            cartas.add(new CartaNumero(Carta.VERDE, "cambio_sentido"));
-            cartas.add(new CartaNumero(Carta.ROJO, "cambio_sentido"));
-            cartas.add(new CartaNumero(Carta.ROJO, "cambio_sentido"));
-            cartas.add(new CartaNumero(Carta.AZUL, "cambio_sentido"));
-            cartas.add(new CartaNumero(Carta.AZUL, "cambio_sentido"));
-            cartas.add(new CartaNumero(Carta.AMARILLO, "cambio_sentido"));
-            cartas.add(new CartaNumero(Carta.AMARILLO, "cambio_sentido"));
+                //CAMBIO_SENTIDO
+                cartas.add(new CartaEspecial(Carta.VERDE, "cambio_sentido"));
+                cartas.add(new CartaEspecial(Carta.ROJO, "cambio_sentido"));
+                cartas.add(new CartaEspecial(Carta.AZUL, "cambio_sentido"));
+                cartas.add(new CartaEspecial(Carta.AMARILLO, "cambio_sentido"));
 
-            //SALTO_TURNO
-            cartas.add(new CartaNumero(Carta.VERDE, "salto_turno"));
-            cartas.add(new CartaNumero(Carta.VERDE, "salto_turno"));
-            cartas.add(new CartaNumero(Carta.ROJO, "salto_turno"));
-            cartas.add(new CartaNumero(Carta.ROJO, "salto_turno"));
-            cartas.add(new CartaNumero(Carta.AZUL, "salto_turno"));
-            cartas.add(new CartaNumero(Carta.AZUL, "salto_turno"));
-            cartas.add(new CartaNumero(Carta.AMARILLO, "salto_turno"));
-            cartas.add(new CartaNumero(Carta.AMARILLO, "salto_turno"));
+                //SALTO_TURNO
+                cartas.add(new CartaEspecial(Carta.VERDE, "salto_turno"));
+                cartas.add(new CartaEspecial(Carta.ROJO, "salto_turno"));
+                cartas.add(new CartaEspecial(Carta.AZUL, "salto_turno"));
+                cartas.add(new CartaEspecial(Carta.AMARILLO, "salto_turno"));
+            }
+            //CHUPATE4
+            cartas.add(new CartaComodin(Carta.NEGRO, "chupate4"));
+            //CAMBIO_COLOR
+            cartas.add(new CartaComodin(Carta.NEGRO, "cambio_color"));
         }
 
     }
@@ -88,6 +83,10 @@ public class Baraja {
 
     public ArrayList<Carta> getCartas() {
         return cartas;
+    }
+
+    public void setCartas(ArrayList<Carta> cartas) {
+        this.cartas = cartas;
     }
 
     @Override
