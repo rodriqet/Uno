@@ -34,11 +34,11 @@ public class CartaComodin extends Carta implements Colorable, Efecto{
             cambiarColor(nuevoColor);
 
         } else {
+            System.out.println("El jugador: " + partida.getSiguienteJugador() + ", con ID: " + partida.getSiguienteJugador().getIdJugador() + ", roba 4 cartas.");
             for (int i = 0; i < 4; i++){
                 partida.getJugadores().get(partida.getTurno() + 1).robarCarta(partida.getMazo());
             }
             partida.saltarTurno();
-            System.out.println("El jugador: " + partida.getSiguienteJugador() + ", con ID: " + partida.getSiguienteJugador().getIdJugador() + ", roba 4 cartas.");
         }
     }
 

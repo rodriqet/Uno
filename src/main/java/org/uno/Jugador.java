@@ -56,7 +56,9 @@ public class Jugador implements Jugable{
 
     @Override
     public void mostrarEstado(){
-        System.out.println(mano.toString());
+        for (Carta carta : mano){
+            System.out.println(carta.toString());
+        }
     }
 
 

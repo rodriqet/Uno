@@ -37,7 +37,7 @@ public abstract class Carta {
 
     @Override
     public String toString() {
-        File file = new File("/cartas_ascii/" + valor + ".txt");
+        File file = new File("src/main/java/org/uno/cartas_ascii/" + valor + ".txt");
         StringBuilder carta = new StringBuilder();
         carta.append(color);
         String linea = "";
@@ -45,7 +45,7 @@ public abstract class Carta {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             while ((linea = br.readLine()) != null) {
-                carta.append(linea);
+                carta.append(linea).append("\n");
             }
             carta.append(Carta.RESET);
             br.close();

@@ -72,7 +72,7 @@ public class Partida {
         } else {
             turno--;
         }
-        turno = Math.floorMod(jugadores.size(), turno);
+        turno = Math.floorMod(turno, jugadores.size());
     }
 
     public void saltarTurno() {
@@ -105,8 +105,14 @@ public class Partida {
         int opcionCartaElegida = 0;
 
         System.out.println("Turno de: " + jugadorTurno.getNombre() + ", con ID: " + jugadorTurno.getIdJugador());
+        System.out.println("Carta en la pila de descarte:");
         System.out.println(descarte.getCartas().getFirst().toString());
-        jugadorTurno.mostrarEstado();
+        System.out.println("¿Mostrar mano? (si/no)");
+        String seleccion = teclado.next().toLowerCase();
+        if (seleccion.equals("si")) {
+            jugadorTurno.mostrarEstado();
+        }
+
         do {
             System.out.println("¿Quieres jugar o robar carta? (jugar/robar)");
             opcion = teclado.next().toLowerCase();
@@ -123,20 +129,25 @@ public class Partida {
             cambiarTurno();
         } else {
             do {
-                System.out.println("¿Qué carta quieres jugar? (1, 2, 3, ...)");
+                System.out.println("¿Qué carta quieres jugar? (1, 2, 3,...)");
                 opcionCartaElegida = teclado.nextInt();
                 if (opcionCartaElegida < 1 || opcionCartaElegida > jugadorTurno.getMano().size()) {
                     System.out.println("Respuesta no válida, por favor intentelo de nuevo.");
                 }
             } while (opcionCartaElegida < 1 || opcionCartaElegida > jugadorTurno.getMano().size());
-            Carta cartaElegida = jugadorTurno.getMano().get(opcionCartaElegida);
 
-            if (esCartaValida(cartaElegida)) {
-                jugadorTurno.jugarCarta(cartaElegida, this);
-                cambiarTurno();
+            Carta cartaElegida = jugadorTurno.getMano().get(opcionCartaElegida - 1);
+            if (cartaElegida != null) {
+                if (esCartaValida(cartaElegida)) {
+                    jugadorTurno.jugarCarta(cartaElegida, this);
+                    cambiarTurno();
+                } else {
+                    System.out.println("La carta elegida no es jugable.");
+                }
             } else {
-                System.out.println("La carta elegida no es válida.");
+                System.out.println("No tienes esta carta en tu baraja");
             }
+
         }
     }
 
@@ -145,10 +156,12 @@ public class Partida {
         for (Jugador jugador : jugadores) {
             if (jugador.getMano().isEmpty()) {
                 victoria = true;
+                break;
             }
         }
         return victoria;
     }
+
 
 }
 
