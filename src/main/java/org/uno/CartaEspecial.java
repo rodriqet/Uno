@@ -15,8 +15,8 @@ public class CartaEspecial extends Carta implements Efecto{
         if (Objects.equals(super.getValor(), "salto_turno")) {
             partida.saltarTurno();
         } else if (Objects.equals(super.getValor(), "chupate2")) {
-            partida.getJugadores().get(partida.getTurno() + 1).robarCarta(partida.getMazo());
-            partida.getJugadores().get(partida.getTurno() + 1).robarCarta(partida.getMazo());
+            partida.getSiguienteJugador().robarCarta(partida.getMazo());
+            partida.getSiguienteJugador().robarCarta(partida.getMazo());
         } else {
             partida.setSentido(!partida.isSentido());
         }

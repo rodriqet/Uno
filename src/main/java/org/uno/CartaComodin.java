@@ -26,6 +26,16 @@ public class CartaComodin extends Carta implements Colorable, Efecto{
                         nuevoColor.equals("rojo") ||
                         nuevoColor.equals("azul") ||
                         nuevoColor.equals("amarillo")) {
+                    switch (nuevoColor) {
+                        case "verde": nuevoColor = Carta.VERDE;
+                        break;
+                        case "rojo": nuevoColor = Carta.ROJO;
+                        break;
+                        case "azul": nuevoColor = Carta.AZUL;
+                        break;
+                        case "amarillo": nuevoColor = Carta.AMARILLO;
+                        break;
+                    }
                     break;
                 } else {
                     System.out.println("Color no válido. Debes introducir: verde, rojo, azul o amarillo.");
@@ -34,9 +44,9 @@ public class CartaComodin extends Carta implements Colorable, Efecto{
             cambiarColor(nuevoColor);
 
         } else {
-            System.out.println("El jugador: " + partida.getSiguienteJugador() + ", con ID: " + partida.getSiguienteJugador().getIdJugador() + ", roba 4 cartas.");
+            System.out.println("El jugador: " + partida.getSiguienteJugador().getNombre() + ", con ID: " + partida.getSiguienteJugador().getIdJugador() + ", roba 4 cartas.");
             for (int i = 0; i < 4; i++){
-                partida.getJugadores().get(partida.getTurno() + 1).robarCarta(partida.getMazo());
+                partida.getSiguienteJugador().robarCarta(partida.getMazo());
             }
             partida.saltarTurno();
         }
@@ -46,7 +56,7 @@ public class CartaComodin extends Carta implements Colorable, Efecto{
 
     @Override
     public void cambiarColor(String color){
-        super.setColor(color);
+        setColor(color);
     }
 
 

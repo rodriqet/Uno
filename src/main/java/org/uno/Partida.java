@@ -77,22 +77,21 @@ public class Partida {
 
     public void saltarTurno() {
         cambiarTurno();
-        cambiarTurno();
     }
 
     public Jugador getSiguienteJugador() {
         if (sentido) {
-            return jugadores.get(turno + 1);
+            return jugadores.get(Math.floorMod(turno + 1, jugadores.size()));
         } else {
-            return jugadores.get(turno - 1);
+            return jugadores.get(Math.floorMod(turno - 1, jugadores.size()));
         }
     }
 
     private boolean esCartaValida(Carta carta) {
         boolean esValida = false;
         if (descarte.getCartas().isEmpty() || carta instanceof CartaComodin ||
-                Objects.equals(carta.getColor(), descarte.getCartas().getFirst().getColor()) ||
-                Objects.equals(carta.getValor(), descarte.getCartas().getFirst().getValor())) {
+                carta.getColor().equals(descarte.getCartas().getFirst().getColor()) ||
+                carta.getValor().equals(descarte.getCartas().getFirst().getValor())) {
             esValida = true;
         }
         return esValida;
