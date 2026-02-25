@@ -1,7 +1,6 @@
 package org.uno;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Partida {
@@ -159,6 +158,16 @@ public class Partida {
             }
         }
         return victoria;
+    }
+
+    public Jugador getGanador() {
+        Jugador ganador = null;
+        for (Jugador jugador : jugadores) {
+            if (jugador.getMano().isEmpty()) {
+                ganador = jugador;
+            }
+        }
+        return ganador;
     }
 
 

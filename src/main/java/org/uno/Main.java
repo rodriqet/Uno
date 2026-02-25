@@ -35,6 +35,11 @@ public class Main {
             partida.turno();
         } while (!partida.verificarVictoria());
 
+        System.out.println("Carta en la pila de descarte:");
+        System.out.println(partida.getDescarte().getCartas().getFirst().toString());
+        System.out.println("¡El jugador: " + partida.getGanador().getNombre() + " ha ganado la partida!");
+
+
 
     }
 
