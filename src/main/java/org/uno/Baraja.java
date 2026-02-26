@@ -85,10 +85,6 @@ public class Baraja {
         return cartas;
     }
 
-    public void setCartas(ArrayList<Carta> cartas) {
-        this.cartas = cartas;
-    }
-
     @Override
     public String toString() {
         StringBuilder baraja = new StringBuilder();

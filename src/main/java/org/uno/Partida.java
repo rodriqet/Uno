@@ -23,10 +23,6 @@ public class Partida {
         turno = 0;
     }
 
-    public ArrayList<Jugador> getJugadores() {
-        return jugadores;
-    }
-
     public Baraja getMazo() {
         return mazo;
     }
@@ -41,10 +37,6 @@ public class Partida {
 
     public void setSentido(boolean sentido) {
         this.sentido = sentido;
-    }
-
-    public int getTurno() {
-        return turno;
     }
 
     public void iniciarPartida() {

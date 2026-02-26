@@ -23,16 +23,8 @@ public class Jugador implements Jugable{
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public ArrayList<Carta> getMano() {
         return mano;
-    }
-
-    public void setMano(ArrayList<Carta> mano) {
-        this.mano = mano;
     }
 
     public int getIdJugador() {
