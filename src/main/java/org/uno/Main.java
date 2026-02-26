@@ -15,16 +15,19 @@ public class Main {
         int numJugadores = 0;
         boolean leidoCorrectamente = false;
 
-        while (!leidoCorrectamente) {
-            System.out.println("¿Cuántos jugadores van a participar? (mínimo 2): ");
+        while (!leidoCorrectamente || numJugadores < 2 || numJugadores > 15) {
+            System.out.println("¿Cuántos jugadores van a participar? (mínimo 2, máximo 15): ");
             try {
                 numJugadores = teclado.nextInt();
                 if (numJugadores >= 2) {
                     leidoCorrectamente = true;
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Error la entrada no es válida.");
+                System.out.println("Error: debes introducir un número.");
                 teclado.next();
+            }
+            if (numJugadores < 2 || numJugadores > 15) {
+                System.out.println("Respuesta no válida, por favor intentelo de nuevo.");
             }
         }
 

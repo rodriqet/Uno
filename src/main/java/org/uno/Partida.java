@@ -1,6 +1,7 @@
 package org.uno;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Partida {
@@ -118,24 +119,32 @@ public class Partida {
             jugadorTurno.robarCarta(mazo);
             cambiarTurno();
         } else {
-            do {
-                System.out.println("¿Qué carta quieres jugar? (1, 2, 3,...)");
-                opcionCartaElegida = teclado.nextInt();
-                if (opcionCartaElegida < 1 || opcionCartaElegida > jugadorTurno.getMano().size()) {
-                    System.out.println("Respuesta no válida, por favor intentelo de nuevo.");
-                }
-            } while (opcionCartaElegida < 1 || opcionCartaElegida > jugadorTurno.getMano().size());
+            boolean cartaJugada = false;
+            while (!cartaJugada) {
 
-            Carta cartaElegida = jugadorTurno.getMano().get(opcionCartaElegida - 1);
-            if (cartaElegida != null) {
+                do {
+                    System.out.println("¿Qué carta quieres jugar? (1, 2, 3,...)");
+                    try {
+                        opcionCartaElegida = teclado.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: debes introducir un número.");
+                        teclado.next();
+                        opcionCartaElegida = 0;
+                    }
+                    if (opcionCartaElegida < 1 || opcionCartaElegida > jugadorTurno.getMano().size()) {
+                        System.out.println("Respuesta no válida, por favor intentelo de nuevo.");
+                    }
+                } while (opcionCartaElegida < 1 || opcionCartaElegida > jugadorTurno.getMano().size());
+
+                Carta cartaElegida = jugadorTurno.getMano().get(opcionCartaElegida - 1);
                 if (esCartaValida(cartaElegida)) {
                     jugadorTurno.jugarCarta(cartaElegida, this);
                     cambiarTurno();
+                    cartaJugada = true;
                 } else {
-                    System.out.println("La carta elegida no es jugable.");
+                    System.out.println("La carta elegida no es jugable. Elige otra carta.");
                 }
-            } else {
-                System.out.println("No tienes esta carta en tu baraja");
+
             }
 
         }
