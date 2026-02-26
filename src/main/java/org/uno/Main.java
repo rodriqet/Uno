@@ -1,6 +1,7 @@
 package org.uno;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -10,8 +11,23 @@ public class Main {
         ArrayList<Jugador> jugadores = new ArrayList<>();
 
         System.out.println("🎮Bienvenido al UNO en terminal🎮");
-        System.out.println("¿Cuántos jugadores van a participar? (mínimo 2): ");
-        int numJugadores = teclado.nextInt();
+
+        int numJugadores = 0;
+        boolean leidoCorrectamente = false;
+
+        while (!leidoCorrectamente) {
+            System.out.println("¿Cuántos jugadores van a participar? (mínimo 2): ");
+            try {
+                numJugadores = teclado.nextInt();
+                if (numJugadores >= 2) {
+                    leidoCorrectamente = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error la entrada no es válida.");
+                teclado.next();
+            }
+        }
+
         for (int i = 0; i < numJugadores; i++) {
             System.out.println("Nombre del jugador " + (i+1) +": ");
             String nombreJugador = teclado.next();
